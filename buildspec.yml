@@ -19,10 +19,6 @@ build:
 post_build:
 commands:
   - echo Build completed on `date`
-cache:
 paths:
   - 'node_modules/**/*'
-artifacts:
-files:
-  - '**/*'
 name: yourBuildName-$(date +%Y-%m-%d)
