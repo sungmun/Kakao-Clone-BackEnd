@@ -1,5 +1,6 @@
 version: 0.2
 install:
+  runtime-versions:
   nodejs: 10
   commands:
     - apt-get update -y
