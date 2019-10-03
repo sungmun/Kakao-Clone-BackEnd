@@ -17,7 +17,7 @@ export class UserController extends Controller<UserService> {
   }
 
   public async userList(req: Request, res: Response) {
-    const userList = await this.service.userList(req.body.profile);
+    const userList = await this.service.userList();
     return res.status(202).json({ userList });
   }
 }
