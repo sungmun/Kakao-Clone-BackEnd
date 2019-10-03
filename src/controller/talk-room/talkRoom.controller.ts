@@ -52,7 +52,7 @@ export class TalkRoomController extends Controller<TalkRoomService> {
   public async addUser(req: Request, res: Response) {
     const friend = await this.service.addUser(
       Number(req.params.talkroomId),
-      req.body.friend,
+      req.body.friend.id,
     );
 
     return res.status(201).json(friend);
