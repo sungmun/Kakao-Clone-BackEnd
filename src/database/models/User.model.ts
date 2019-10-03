@@ -39,8 +39,8 @@ export class User extends Model<User> {
   updatedAt!: Date;
 
   @BelongsToMany(() => User, () => Friend, 'userId', 'friendId')
-  friendList!: User[] | [];
+  friendList!: User[];
 
   @BelongsToMany(() => TalkRoom, () => UserTalkRoom, 'userId', 'talkRoomId')
-  talkRoomList!: TalkRoom[] | [];
+  talkRoomList!: TalkRoom[];
 }

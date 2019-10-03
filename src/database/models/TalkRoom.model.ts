@@ -22,10 +22,10 @@ export class TalkRoom extends Model<TalkRoom> {
   id!: number;
 
   @BelongsToMany(() => User, () => UserTalkRoom, 'talkRoomId', 'userId')
-  userList!: TalkRoom[] | [];
+  userList!: User[];
 
   @HasMany(() => Talk)
-  talkList!: Talk[] | [];
+  talkList!: Talk[];
 
   @CreatedAt
   createdAt!: Date;
