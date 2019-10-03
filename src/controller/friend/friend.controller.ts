@@ -8,7 +8,7 @@ export class FriendController extends Controller<FriendService> {
 
     this.router.post('/', this.asyncWarp(this.save));
     this.router.get('/', this.asyncWarp(this.read));
-    this.router.delete('/:id', this.asyncWarp(this.remove));
+    this.router.delete('/:friendId', this.asyncWarp(this.remove));
   }
 
   public async read(req: Request, res: Response) {
@@ -27,9 +27,8 @@ export class FriendController extends Controller<FriendService> {
 
   public async remove(req: Request, res: Response) {
     const { profile: user } = req.body;
-    const friend = req.params.id;
 
-    await this.service.remove(user, friend);
+    await this.service.remove(user, req.params.friendId);
 
     return res.status(204);
   }
