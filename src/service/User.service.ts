@@ -20,9 +20,9 @@ export class UserService {
     return token;
   }
 
-  public async userList(profile: any) {
+  public async userList() {
     const userListData = await User.findAll();
-    userListData.map((user: User) => user.get({ plain: true }));
+
     return userListData;
   }
 }

@@ -1,42 +1,38 @@
 import { User } from './../database/models/User.model';
-import { CoustomError } from '../index';
+
 import { Friend } from '../database/models';
+import { NotFoundDataBaseDataError } from '../util/Error/NotFoundTokenError copy';
 
 export class FriendService {
-  public read = async (profile: any) => {
-    const user = User.build(profile);
-
-    if (!user) throw new CoustomError('잘못된 사용자입니다', 404);
-
-    const friendList = <User[]>await user.$get<User>('friendList');
-
-    const plainFriendList = friendList.map(user => {
-      const plainUser = user.get({ plain: true });
-      delete plainUser.Friend;
-      return plainUser;
+  public async read(user: User) {
+    const data = await User.findOne({
+      attributes: ['id'],
+      include: [User],
+      where: { id: user.id },
     });
+    if (!data) throw new NotFoundDataBaseDataError();
 
-    return plainFriendList;
-  };
+    return data.friendList;
+  }
 
-  public save = async (user: any, friend: any) => {
-    const [friendLoad, isFind] = await Friend.findOrCreate({
+  public async save(user: User, friend: any) {
+    const [friendLoad] = await Friend.findOrCreate({
       where: {
         userId: user.id,
         friendId: friend,
       },
     });
     return friendLoad;
-  };
+  }
 
-  public remove = async (user: any, friend: any) => {
+  public async remove(user: User, friendId: number) {
     await Friend.destroy({
       where: {
+        friendId,
         userId: user.id,
-        friendId: friend,
       },
     });
 
     return true;
-  };
+  }
 }
