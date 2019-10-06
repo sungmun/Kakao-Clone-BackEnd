@@ -1,4 +1,5 @@
 import { Talk } from '../database/models/Talk.model';
+
 export class TalkRoomSocket {
   space: SocketIO.Namespace;
   constructor(private id: string, private socket: SocketIO.Socket) {
@@ -16,4 +17,8 @@ export class TalkRoomSocket {
     });
     this.space.emit(`/talk-room/${this.id}`, talkCreate.toJSON());
   };
+
+  public get Socket(): SocketIO.Socket {
+    return this.socket;
+  }
 }

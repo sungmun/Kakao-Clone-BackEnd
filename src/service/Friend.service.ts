@@ -1,5 +1,4 @@
 import { User } from './../database/models/User.model';
-
 import { Friend } from '../database/models';
 import { NotFoundDataBaseDataError } from '../util/Error/NotFoundTokenError copy';
 
