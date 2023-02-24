@@ -43,7 +43,7 @@
     "mocha": "^8.4.0",
     "morgan": "^1.9.1",
     "node-mocks-http": "^1.7.6",
-    "sequelize": "^6.6.2",
+    "sequelize": "^6.29.0",
     "sequelize-cli-typescript": "^3.2.0-c",
     "sequelize-typescript": "^0.6.11",
     "sinon": "^7.3.2",
